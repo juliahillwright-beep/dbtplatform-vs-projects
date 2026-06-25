@@ -29,7 +29,7 @@
       line-height: 1.6;
     }
 
-    /* ─────────── NAV ─────────── */
+    /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 50;
       background: var(--dark);
@@ -50,7 +50,7 @@
     }
     .nav-cta:hover { background: var(--orange2); }
 
-    /* ─────────── HERO ─────────── */
+    /* ── HERO ── */
     .hero {
       background: var(--dark);
       padding: 80px 40px 72px;
@@ -71,7 +71,7 @@
     .hero h1 em { color: var(--orange); font-style: normal; }
     .hero p {
       font-size: 18px; color: #aaa;
-      max-width: 620px; margin: 0 auto 40px; line-height: 1.65;
+      max-width: 680px; margin: 0 auto 40px; line-height: 1.65;
     }
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
@@ -90,7 +90,7 @@
     }
     .btn-ghost:hover { border-color: #888; color: #ddd; }
 
-    /* ─────────── STATS STRIP ─────────── */
+    /* ── STATS STRIP ── */
     .stats-strip {
       background: var(--orange);
       padding: 32px 40px;
@@ -110,9 +110,8 @@
       margin-top: 4px; line-height: 1.4;
     }
 
-    /* ─────────── SECTION WRAPPER ─────────── */
+    /* ── SECTION WRAPPER ── */
     .section { padding: 72px 40px; max-width: 1100px; margin: 0 auto; }
-    .section-sm { padding: 56px 40px; max-width: 1100px; margin: 0 auto; }
 
     .section-eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: .1em;
@@ -127,10 +126,10 @@
     }
     .section-header { margin-bottom: 48px; }
 
-    /* ─────────── IMPACT CARDS ─────────── */
+    /* ── IMPACT CARDS ── */
     .impact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
     .impact-card {
@@ -138,15 +137,11 @@
       border-radius: 12px; padding: 28px 24px;
       border-top: 3px solid var(--orange);
     }
-    .impact-card .ic-icon {
-      font-size: 24px; margin-bottom: 12px; display: block;
-    }
-    .impact-card h3 {
-      font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark);
-    }
+    .impact-card .ic-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+    .impact-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
     .impact-card p { font-size: 14px; color: var(--mid); line-height: 1.55; }
 
-    /* ─────────── COMPARISON TABLE ─────────── */
+    /* ── COMPARISON TABLE ── */
     .table-wrap { overflow-x: auto; }
     table.comp {
       width: 100%; border-collapse: collapse;
@@ -177,29 +172,17 @@
     .highlight-text { color: var(--green); font-weight: 700; }
     .snow-limit { color: #999; }
 
-    /* ─────────── CHOOSE SECTIONS ─────────── */
-    .choose-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    }
+    /* ── CHOOSE SECTIONS ── */
+    .choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .choose-card {
-      border-radius: 12px; padding: 32px;
-      border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; border: 1px solid var(--border);
     }
     .choose-card.choose-dbt {
-      background: #fff8f6;
-      border-color: var(--orange);
-      border-top: 4px solid var(--orange);
+      background: #fff8f6; border-color: var(--orange); border-top: 4px solid var(--orange);
     }
-    .choose-card.choose-snow {
-      background: var(--bg);
-      border-top: 4px solid #aaa;
-    }
-    .choose-card h3 {
-      font-size: 17px; font-weight: 800; margin-bottom: 6px;
-    }
-    .choose-card .choose-sub {
-      font-size: 13px; color: var(--muted); margin-bottom: 20px;
-    }
+    .choose-card.choose-snow { background: var(--bg); border-top: 4px solid #aaa; }
+    .choose-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .choose-card .choose-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
     .choose-list { list-style: none; }
     .choose-list li {
       font-size: 14px; color: var(--mid); padding: 7px 0;
@@ -207,39 +190,29 @@
       display: flex; gap: 10px; align-items: flex-start; line-height: 1.45;
     }
     .choose-list li:last-child { border-bottom: none; }
-    .choose-list li::before {
-      flex-shrink: 0; margin-top: 2px;
-      font-weight: 700; font-size: 13px;
-    }
+    .choose-list li::before { flex-shrink: 0; margin-top: 2px; font-weight: 700; font-size: 13px; }
     .choose-dbt .choose-list li::before { content: '✓'; color: var(--green); }
     .choose-snow .choose-list li::before { content: '→'; color: #aaa; }
 
-    /* ─────────── CLOSING QUOTE ─────────── */
-    .closing {
-      background: var(--dark);
-      padding: 72px 40px;
-      text-align: center;
-    }
+    /* ── CLOSING ── */
+    .closing { background: var(--dark); padding: 72px 40px; text-align: center; }
     .closing blockquote {
-      font-size: clamp(18px, 2.5vw, 26px);
-      font-weight: 700; color: var(--white);
-      max-width: 740px; margin: 0 auto 32px;
-      line-height: 1.45; letter-spacing: -.01em;
+      font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; color: var(--white);
+      max-width: 740px; margin: 0 auto 32px; line-height: 1.45; letter-spacing: -.01em;
     }
     .closing blockquote em { color: var(--orange); font-style: normal; }
     .closing-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-    /* ─────────── DIVIDER ─────────── */
     .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-    /* ─────────── RESPONSIVE ─────────── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       nav { padding: 0 20px; }
       .hero { padding: 56px 24px 48px; }
       .stats-strip { padding: 24px 20px; }
       .stat { padding: 10px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.3); width: 100%; }
       .stat:last-child { border-bottom: none; }
-      .section, .section-sm { padding: 48px 24px; }
+      .section { padding: 48px 24px; }
       .choose-grid { grid-template-columns: 1fr; }
       .closing { padding: 56px 24px; }
     }
@@ -261,6 +234,7 @@
   <div class="hero-actions">
     <a href="#compare" class="btn-primary">See the comparison</a>
     <a href="#choose" class="btn-ghost">Find your fit</a>
+    <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown</a>
   </div>
 </section>
 
@@ -450,7 +424,7 @@
 
     <div class="choose-card choose-snow">
       <h3>Snowflake dbt Projects is a good fit when:</h3>
-      <p class="choose-sub">A reasonable starting point for small, exploratory teams on Snowflake.</p>
+      <p class="choose-sub">A reasonable starting point for smaller engineering teams on Snowflake.</p>
       <ul class="choose-list">
         <li>Your team has extensive prior experience with dbt and is comfortable dedicating engineering headcount for platform maintenance away from product development</li>
         <li>Your team is small (under 3 people) and working on a single project</li>
@@ -471,7 +445,7 @@
   </blockquote>
   <div class="closing-actions">
     <a href="https://www.getdbt.com/pricing" target="_blank" class="btn-primary">View dbt platform pricing</a>
-    <a href="simple-comparison.html" class="btn-ghost">See full feature comparison →</a>
+    <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown →</a>
   </div>
 </section>
 
