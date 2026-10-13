@@ -230,7 +230,7 @@
 <section class="hero">
   <span class="hero-eyebrow">dbt platform (Enterprise) vs. Snowflake dbt Projects</span>
   <h1>Build pipelines faster. <em>Ship data products sooner.</em></h1>
-  <p>dbt platform gives teams the managed infrastructure, governed collaboration, and tooling to build data pipelines quickly and ship reliable data products faster. Snowflake dbt Projects is the right fit for engineering teams with dedicated headcount for platform maintenance and existing dbt experience who are operating at a smaller scale.</p>
+  <p>dbt platform gives teams the managed infrastructure, governed collaboration, and tooling to build data pipelines quickly and ship reliable data products faster. Snowflake dbt Projects is a legitimate starting point for small, Snowflake-only teams running a single project — but CI/CD, retry, alerting, and cross-project governance are things you build and maintain yourself.</p>
   <div class="hero-actions">
     <a href="#compare" class="btn-primary">See the comparison</a>
     <a href="#choose" class="btn-ghost">Find your fit</a>
@@ -241,12 +241,12 @@
 <!-- ── STATS STRIP ── -->
 <div class="stats-strip">
   <div class="stat">
-    <span class="stat-num">25–35%</span>
-    <span class="stat-label">fewer models built<br>with dbt State</span>
+    <span class="stat-num">15–30%</span>
+    <span class="stat-label">average compute savings<br>with dbt State*</span>
   </div>
   <div class="stat">
-    <span class="stat-num">15%</span>
-    <span class="stat-label">lower Snowflake<br>compute costs</span>
+    <span class="stat-num">35%</span>
+    <span class="stat-label">fewer models built, 15% lower<br>Snowflake costs (customer result)</span>
   </div>
   <div class="stat">
     <span class="stat-num">Multi-team</span>
@@ -275,32 +275,32 @@
     <div class="impact-card">
       <span class="ic-icon">⚡</span>
       <h3>Development efficiency</h3>
-      <p>Fusion engine with enhanced diagnostics + dbt State means only changed models are built. Customers report 25–35% fewer models built and 15% lower Snowflake compute costs.</p>
+      <p>The dbt v2 engine gives developers live diagnostics and column autocomplete in Studio and VS Code. Snowflake Workspaces runs v2 as an execution runtime only — no language server, so errors surface after the run finishes, not as you type.</p>
     </div>
     <div class="impact-card">
       <span class="ic-icon">📐</span>
       <h3>Trusted metrics — fully portable</h3>
-      <p>Semantic Layer powered by MetricFlow centralizes metric definitions across all teams and all warehouses. Because MetricFlow is warehouse-agnostic, your metric definitions move with you — every dashboard, report, and AI output uses the same definition of revenue regardless of which data platform you're on. Snowflake Semantic Views lock you to Snowflake.</p>
+      <p>Semantic Layer powered by MetricFlow centralizes metric definitions across all teams and all warehouses, versioned and tested alongside your models. Because MetricFlow is warehouse-agnostic, your metric definitions move with you — every dashboard, report, and AI agent (via MCP) uses the same definition of revenue regardless of which data platform you're on. Snowflake Semantic Views are Snowflake-only and managed as database objects outside your project's version control and CI.</p>
     </div>
     <div class="impact-card">
       <span class="ic-icon">🔍</span>
       <h3>Lineage &amp; impact analysis</h3>
-      <p>Column-level, filterable lineage across projects lets you understand downstream impact before making changes — not after they've broken production.</p>
+      <p>Column-level, filterable lineage across projects — plus impact analysis in the editor — lets you understand downstream impact before making changes. Snowflake's Horizon lineage only covers materialized objects after a first run, caps the DAG view at 300 models, and stops at the project boundary.</p>
     </div>
     <div class="impact-card">
       <span class="ic-icon">🔒</span>
       <h3>Governance controls</h3>
-      <p>Role-based access, approval workflows, and audit history meet production standards and compliance requirements that Snowflake dbt Projects' limited deployment controls cannot.</p>
+      <p>Model-level access modifiers (public/protected/private), environment separation, PR-based approvals, and audit history meet production standards and compliance requirements. In Snowflake dbt Projects, governance is all-or-nothing at the project-object level, and a developer with prod grants can build straight to prod from a workspace.</p>
     </div>
     <div class="impact-card">
       <span class="ic-icon">💰</span>
       <h3>Cost efficiency</h3>
-      <p>State-Aware Orchestration skips unchanged models on every run. Snowflake dbt Projects executes the full DAG every time — burning compute on work that doesn't need doing.</p>
+      <p>dbt State skips unchanged models on every run, and Cost Insights proves what it saved — per model and per job. On Snowflake, every run also holds a user-managed warehouse through parse and compile (no serverless tasks for dbt), and there's no view to show finance what State actually saved.</p>
     </div>
     <div class="impact-card">
       <span class="ic-icon">🎨</span>
       <h3>Accessible to non-technical builders</h3>
-      <p>dbt Canvas gives analysts and BI developers a drag-and-drop visual interface to build in dbt natively — no SQL required. Snowflake dbt Projects requires engineering experience to use; there is no equivalent visual development layer available in the tool.</p>
+      <p>dbt Canvas gives analysts and BI developers a drag-and-drop visual interface to build in dbt natively — no SQL required — and every Canvas model compiles to version-controlled dbt SQL. Snowflake dbt Projects requires engineering experience to use; there is no equivalent visual development layer available in the tool.</p>
     </div>
   </div>
 </div>
@@ -326,21 +326,21 @@
       <tbody>
         <tr>
           <td>Multi-team collaboration</td>
-          <td class="dbt-cell">dbt Mesh: cross-project references, contracts, and controls</td>
-          <td><span class="snow-limit">Not supported</span></td>
-          <td class="why-cell">Teams build on trusted upstream assets instead of recreating logic.</td>
+          <td class="dbt-cell">dbt Mesh: cross-project and cross-platform references, contracts, and access modifiers</td>
+          <td><span class="snow-limit">No cross-project ref — another team's project is copied in as a local package and the copies drift</span></td>
+          <td class="why-cell">Teams build on trusted upstream assets instead of recreating logic. Dependencies between projects, not team size, are the qualifier.</td>
         </tr>
         <tr>
           <td>Development efficiency</td>
-          <td class="dbt-cell">Fusion engine with enhanced diagnostics + dbt State (builds only what changed, skips the rest)</td>
-          <td><span class="snow-limit">No dbt State support</span></td>
-          <td class="why-cell"><span class="highlight-text">dbt State skips unchanged models and clones from production — customers report 25–35% fewer models built and 15% lower Snowflake compute costs.</span> Not available in Snowflake dbt Projects.</td>
+          <td class="dbt-cell">dbt v2 engine with live diagnostics, column autocomplete, and impact analysis in Studio and VS Code; dbt Wizard inline</td>
+          <td><span class="snow-limit">v2 runs as a pinned preview runtime only; Workspaces has no language server (no live diagnostics or autocomplete) and no streaming output</span></td>
+          <td class="why-cell">Errors are caught as you type, before they hit the warehouse — not after the run finishes.</td>
         </tr>
         <tr>
           <td>CI/CD workflows</td>
-          <td class="dbt-cell">Native Slim CI, merge jobs, and build artifacts</td>
-          <td>Teams manage their own approach</td>
-          <td class="why-cell">Reduces operational overhead and shortens development cycles.</td>
+          <td class="dbt-cell">PR-triggered CI with a temp schema per PR, status posted back to the PR, Slim CI, Advanced CI (compare changes), and SQL linting — configured from the UI</td>
+          <td>Hand-built in GitHub Actions via Snowflake CLI; Slim CI needs MONITOR on prod and a prod run in the last 7 days; no compare changes</td>
+          <td class="why-cell">CI is native rather than a pipeline someone on your team owns, maintains, and debugs when the 7-day window lapses.</td>
         </tr>
         <tr>
           <td>Accessibility</td>
@@ -350,45 +350,45 @@
         </tr>
         <tr>
           <td>Trusted metrics</td>
-          <td class="dbt-cell">Semantic Layer powered by MetricFlow — fully portable, warehouse-agnostic, version-controlled alongside your dbt models</td>
-          <td>Snowflake semantic views (Snowflake-only)</td>
+          <td class="dbt-cell">Semantic Layer powered by MetricFlow — fully portable, warehouse-agnostic, version-controlled and tested alongside your dbt models; served to BI and AI agents via MCP</td>
+          <td>Snowflake Semantic Views — Snowflake data only, managed as database objects outside the project's version control and CI</td>
           <td class="why-cell">Centralized metric definitions across all teams and all warehouses. Metric logic moves with you — not locked to a single platform.</td>
         </tr>
         <tr>
           <td>Lineage &amp; impact analysis</td>
-          <td class="dbt-cell">Column-level, filterable lineage across projects</td>
-          <td>Model-level lineage</td>
+          <td class="dbt-cell">Column-level, filterable lineage across projects; impact analysis in the editor</td>
+          <td>Horizon column lineage on materialized objects only (after a first run); 300-model DAG cap; no cross-project lineage</td>
           <td class="why-cell">Understand downstream impact before making changes.</td>
         </tr>
         <tr>
           <td>Governance controls</td>
-          <td class="dbt-cell">Role-based access, approval workflows, audit history</td>
-          <td><span class="snow-limit">Limited deployment controls</span></td>
+          <td class="dbt-cell">Model-level access modifiers, environment separation (IDE writes to dev only), PR-based approvals, audit history</td>
+          <td><span class="snow-limit">RBAC at the project-object level only; no model-level access; prod safety depends on warehouse RBAC discipline</span></td>
           <td class="why-cell">Meets production standards and compliance requirements.</td>
         </tr>
         <tr>
           <td>Git flexibility</td>
-          <td class="dbt-cell">GitHub, GitLab, Azure DevOps, and Bitbucket</td>
-          <td>GitHub only</td>
+          <td class="dbt-cell">GitHub, GitLab, Azure DevOps, and Bitbucket — PRs created and reviewed in-product</td>
+          <td>GitHub (GitLab and Azure DevOps CI in preview); PR creation and code review happen outside Snowflake</td>
           <td class="why-cell">Continue using existing development workflows.</td>
         </tr>
         <tr>
           <td>Operational scale</td>
-          <td class="dbt-cell">Designed for large, concurrent workloads</td>
-          <td><span class="snow-limit">Repository and concurrency limits apply</span></td>
+          <td class="dbt-cell">Designed for large, concurrent workloads (100 run slots on Enterprise; unlimited on Enterprise+)</td>
+          <td><span class="snow-limit">100,000-file and 2 GB repo limits; concurrent runs need WRITEBACK = FALSE or distinct target paths; 300-model DAG view</span></td>
           <td class="why-cell">Avoids bottlenecks as usage expands.</td>
         </tr>
         <tr>
-          <td>Cost efficiency</td>
-          <td class="dbt-cell">State-Aware Orchestration skips unchanged models</td>
-          <td><span class="snow-limit">Full DAG execution every run</span></td>
-          <td class="why-cell">Reduces unnecessary warehouse compute costs.</td>
+          <td>Orchestration &amp; cost efficiency</td>
+          <td class="dbt-cell">dbt State built in, with Cost Insights showing credits saved per model and job; automatic retry from the point of failure; model-level alerts</td>
+          <td><span class="snow-limit">Snowflake Tasks on a user-managed warehouse (no serverless) held through parse and compile; retry is manual; task-level alerts only; dbt State available only via a paid dbt Labs integration with no Cost Insights</span></td>
+          <td class="why-cell">Both can skip unchanged models with dbt State — only one proves what it saved and recovers from a 2 a.m. failure without a human.</td>
         </tr>
         <tr>
           <td>Support model</td>
-          <td class="dbt-cell">Direct access to dbt Labs with SLAs</td>
-          <td>Support routed through Snowflake</td>
-          <td class="why-cell">Direct path to the team that builds and maintains dbt.</td>
+          <td class="dbt-cell">Direct access to dbt Labs with SLAs; version upgrades managed for you</td>
+          <td>Snowflake supports the runtime and pins the dbt versions available; dbt-specific issues, packages, and upgrades are the customer's</td>
+          <td class="why-cell">Direct path to the team that builds and maintains dbt — one vendor, one incident.</td>
         </tr>
       </tbody>
     </table>
@@ -424,13 +424,13 @@
 
     <div class="choose-card choose-snow">
       <h3>Snowflake dbt Projects is a good fit when:</h3>
-      <p class="choose-sub">A reasonable starting point for smaller engineering teams on Snowflake.</p>
+      <p class="choose-sub">A reasonable starting point for small, Snowflake-only teams running simple pipelines.</p>
       <ul class="choose-list">
-        <li>Your team has extensive prior experience with dbt and is comfortable dedicating engineering headcount for platform maintenance away from product development</li>
-        <li>Your team is small (under 3 people) and working on a single project</li>
-        <li>You have no requirement for governance, access controls, or audit trails</li>
-        <li>Snowflake is your only data platform and you don't anticipate that changing</li>
-        <li>Scale, cross-team collaboration, and enterprise deployment are not current priorities</li>
+        <li>You're fully committed to Snowflake with no multi-warehouse plans — and no M&amp;A on the horizon</li>
+        <li>You have a small, single-team project (fewer than 5 developers) with no cross-team model sharing</li>
+        <li>You're just getting started with dbt in test or dev environments, not yet production-ready</li>
+        <li>You're running straightforward transformations without complex CI/CD requirements, and are comfortable building and maintaining your own GitHub Actions pipeline</li>
+        <li>You don't have production SLAs that require automatic retry, model-level alerting, or observability</li>
       </ul>
     </div>
 
@@ -447,6 +447,7 @@
     <a href="https://www.getdbt.com/pricing" target="_blank" class="btn-primary">View dbt platform pricing</a>
     <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown →</a>
   </div>
+  <p style="margin-top:28px;font-size:12px;color:#888;max-width:740px;margin-left:auto;margin-right:auto;line-height:1.5;">*15–30% compute savings on average based on dbt State design partner results; individual savings vary by project configuration and workload. 35% fewer models built / 15% lower Snowflake cost is a single customer's reported result. Snowflake dbt Projects limitations reflect Snowflake's documentation as of September 2026.</p>
 </section>
 
 </body>
