@@ -111,7 +111,7 @@
 
     td.feature-label { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
     td.feature-label .sub { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-    td.check-cell { text-align: center; width: 160px; font-size: 13px; }
+    td.check-cell { text-align: center; width: 200px; min-width: 150px; font-size: 13px; }
 
     .yes  { color: var(--green); font-weight: 700; font-size: 16px; }
     .no   { color: #ccc; font-size: 14px; }
@@ -126,7 +126,8 @@
     .pill-entplus  { background: #fff0ee; color: #c2290a; }
     .pill-beta     { background: #fff8e1; color: #b45300; }
     .pill-preview  { background: #e8f0ff; color: var(--blue); }
-    .pill-limited  { background: #e0f3ff; color: var(--snow); }
+    .pill-limited  { background: #e0f3ff; color: var(--snow); white-space: normal; line-height: 1.35; max-width: 200px; text-align: center; padding: 3px 8px; }
+    td.check-cell .tier-pill { white-space: normal; line-height: 1.35; max-width: 200px; }
 
     a.feature-link {
       color: var(--text); text-decoration: none;
