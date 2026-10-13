@@ -154,6 +154,17 @@
       font-size: 13px; font-weight: 700; color: var(--white);
     }
     table.comp thead th:first-child { width: 180px; }
+    /* Sticky column headers: stay visible under the nav while the table scrolls */
+    @media (min-width: 701px) {
+      .table-wrap { overflow: visible; }
+      table.comp { overflow: visible; }
+      table.comp thead th {
+        position: sticky; top: 56px; z-index: 5;
+        box-shadow: 0 1px 0 rgba(255,255,255,.08);
+      }
+      table.comp thead th:first-child { border-top-left-radius: 12px; }
+      table.comp thead th:last-child { border-top-right-radius: 12px; }
+    }
     table.comp thead th.col-dbt { background: var(--orange); }
     table.comp thead th.col-why { background: #2a2a2a; color: #aaa; font-style: italic; font-weight: 400; }
     table.comp tbody tr { border-bottom: 1px solid var(--border); }
