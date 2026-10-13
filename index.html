@@ -230,7 +230,7 @@
 <section class="hero">
   <span class="hero-eyebrow">dbt platform (Enterprise) vs. Snowflake dbt Projects</span>
   <h1>Build pipelines faster. <em>Ship data products sooner.</em></h1>
-  <p>dbt platform gives teams the managed infrastructure, governed collaboration, and tooling to build data pipelines quickly and ship reliable data products faster. Snowflake dbt Projects is a legitimate starting point for small, Snowflake-only teams running a single project — but CI/CD, retry, alerting, and cross-project governance are things you build and maintain yourself.</p>
+  <p>dbt platform gives teams the managed infrastructure, governed collaboration, and tooling to build data pipelines quickly and ship reliable data products faster. Snowflake dbt Projects is a solid starting point for small, Snowflake-only teams that already know dbt well — but it's a place to author and run dbt, not a managed platform. CI/CD, retry, alerting, observability, version upgrades, and cross-project governance are things your engineers build and keep running.</p>
   <div class="hero-actions">
     <a href="#compare" class="btn-primary">See the comparison</a>
     <a href="#choose" class="btn-ghost">Find your fit</a>
@@ -245,8 +245,8 @@
     <span class="stat-label">average compute savings<br>with dbt State*</span>
   </div>
   <div class="stat">
-    <span class="stat-num">35%</span>
-    <span class="stat-label">fewer models built, 15% lower<br>Snowflake costs (customer result)</span>
+    <span class="stat-num">2–6 mo</span>
+    <span class="stat-label">of senior engineering time to build<br>your own CI/CD on Snowflake dbt Projects†</span>
   </div>
   <div class="stat">
     <span class="stat-num">Multi-team</span>
@@ -264,9 +264,14 @@
   <div class="section-header">
     <div class="section-eyebrow">Why it matters</div>
     <h2 class="section-title">The platform that makes AI, analytics,<br>and self-service reliable at scale</h2>
-    <p class="section-sub">dbt platform (Enterprise) is the trust, governance, and context layer your data stack needs as complexity grows.</p>
+    <p class="section-sub">Snowflake dbt Projects runs the compute. dbt platform (Enterprise) runs the platform — the trust, governance, and context layer your data stack needs as complexity grows.</p>
   </div>
   <div class="impact-grid">
+    <div class="impact-card">
+      <span class="ic-icon">🧰</span>
+      <h3>Free to run ≠ free to operate</h3>
+      <p>Snowflake dbt Projects has no license fee, but someone on your team builds and maintains the CI/CD pipeline, failure recovery, alerting, job history, and dbt version upgrades — and that assumes existing dbt expertise to begin with. dbt platform replaces that build cost rather than adding to it, and ships with onboarding from the team that builds dbt.</p>
+    </div>
     <div class="impact-card">
       <span class="ic-icon">🏗️</span>
       <h3>Multi-team collaboration</h3>
@@ -324,6 +329,18 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>Platform maintenance</td>
+          <td class="dbt-cell">Fully managed — scheduler, CI/CD, environments, alerting, job history, and dbt version upgrades maintained for you</td>
+          <td><span class="snow-limit">Snowflake runs the compute; CI/CD, observability, governance tooling, and dbt-specific upgrades are the customer's to build and keep running (typically 2–6 months of senior engineering time to build)</span></td>
+          <td class="why-cell">"Free" is a starting point, not a platform. Engineering time spent on tooling is time not spent on data products.</td>
+        </tr>
+        <tr>
+          <td>dbt experience required</td>
+          <td class="dbt-cell">Analysts can build in Canvas without SQL; engineers get live diagnostics in Studio; onboarding and training from dbt Labs</td>
+          <td><span class="snow-limit">Assumes an experienced dbt team — Workspaces is a general file editor with no dbt language server, and setup, packages, and monitoring need ACCOUNTADMIN configuration</span></td>
+          <td class="why-cell">Works well for teams that already know dbt; harder to onboard new builders or non-engineers.</td>
+        </tr>
         <tr>
           <td>Multi-team collaboration</td>
           <td class="dbt-cell">dbt Mesh: cross-project and cross-platform references, contracts, and access modifiers</td>
@@ -404,7 +421,7 @@
   <div class="section-header">
     <div class="section-eyebrow">Find your fit</div>
     <h2 class="section-title">Which is right for your team?</h2>
-    <p class="section-sub">Both options serve real needs — it comes down to where you are today and where you need to go.</p>
+    <p class="section-sub">Both options serve real needs — it comes down to where you are on the maturity curve today, how much dbt expertise and engineering capacity you can commit to running it, and where you need to be in 12–18 months.</p>
   </div>
   <div class="choose-grid">
 
@@ -412,6 +429,8 @@
       <h3>Choose dbt platform (Enterprise) when you need to:</h3>
       <p class="choose-sub">The right fit for teams operating dbt as a production data capability.</p>
       <ul class="choose-list">
+        <li>Keep engineers on data products instead of building and maintaining CI/CD, orchestration, and observability tooling</li>
+        <li>Onboard analysts and newer dbt users safely — Canvas, guided onboarding, and live diagnostics</li>
         <li>Scale dbt across multiple teams and domains</li>
         <li>Standardize and govern shared business logic</li>
         <li>Improve deployment reliability and developer productivity</li>
@@ -424,13 +443,14 @@
 
     <div class="choose-card choose-snow">
       <h3>Snowflake dbt Projects is a good fit when:</h3>
-      <p class="choose-sub">A reasonable starting point for small, Snowflake-only teams running simple pipelines.</p>
+      <p class="choose-sub">A solid starting point for small, Snowflake-only teams that already know dbt and can staff the maintenance themselves.</p>
       <ul class="choose-list">
+        <li>Your team has deep prior dbt experience — Snowflake dbt Projects assumes it, with no guided onboarding and no in-editor diagnostics to catch mistakes</li>
+        <li>You can dedicate engineering headcount to platform maintenance — building and owning CI/CD, retry, alerting, job history, and dbt upgrades yourself (typically 2–6 months of senior engineering time to build, plus ongoing upkeep)</li>
         <li>You're fully committed to Snowflake with no multi-warehouse plans — and no M&amp;A on the horizon</li>
         <li>You have a small, single-team project (fewer than 5 developers) with no cross-team model sharing</li>
-        <li>You're just getting started with dbt in test or dev environments, not yet production-ready</li>
-        <li>You're running straightforward transformations without complex CI/CD requirements, and are comfortable building and maintaining your own GitHub Actions pipeline</li>
-        <li>You don't have production SLAs that require automatic retry, model-level alerting, or observability</li>
+        <li>You're running straightforward transformations in test or dev — not yet production-ready, and without production SLAs that need automatic retry or model-level alerting</li>
+        <li>No analysts or non-engineers need to contribute — there's no visual development layer</li>
       </ul>
     </div>
 
@@ -441,13 +461,13 @@
 <!-- ── CLOSING ── -->
 <section class="closing">
   <blockquote>
-    dbt Platform is built for organizations that need to operate dbt as a <em>reliable, governed capability</em> across teams, domains, and data infrastructure.
+    Snowflake dbt Projects is a solid place to start if you already know dbt and can staff the tooling. dbt platform is built for organizations that need to operate dbt as a <em>reliable, governed capability</em> across teams, domains, and data infrastructure — without dedicating engineers to run it.
   </blockquote>
   <div class="closing-actions">
     <a href="https://www.getdbt.com/pricing" target="_blank" class="btn-primary">View dbt platform pricing</a>
     <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown →</a>
   </div>
-  <p style="margin-top:28px;font-size:12px;color:#888;max-width:740px;margin-left:auto;margin-right:auto;line-height:1.5;">*15–30% compute savings on average based on dbt State design partner results; individual savings vary by project configuration and workload. 35% fewer models built / 15% lower Snowflake cost is a single customer's reported result. Snowflake dbt Projects limitations reflect Snowflake's documentation as of September 2026.</p>
+  <p style="margin-top:28px;font-size:12px;color:#888;max-width:740px;margin-left:auto;margin-right:auto;line-height:1.5;">*15–30% compute savings on average based on dbt State design partner results; individual savings vary by project configuration and workload. †2–6 months is a field estimate of the senior engineering time to build custom CI/CD, observability, and recovery on dbt Core / Snowflake dbt Projects; validate against your own team. Snowflake dbt Projects limitations reflect Snowflake's documentation as of September 2026.</p>
 </section>
 
 </body>
