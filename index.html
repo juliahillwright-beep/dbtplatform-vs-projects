@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dbt platform (Enterprise) vs. Snowflake dbt Projects</title>
+  <title>dbt platform and Snowflake dbt Projects</title>
+  <meta name="description" content="How the dbt platform and dbt Projects on Snowflake fit together, side by side." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -137,7 +138,7 @@
       border-radius: 12px; padding: 28px 24px;
       border-top: 3px solid var(--orange);
     }
-    .impact-card .ic-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+    .impact-card .ic-icon-unused { font-size: 24px; margin-bottom: 12px; display: block; }
     .impact-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
     .impact-card p { font-size: 14px; color: var(--mid); line-height: 1.55; }
 
@@ -250,6 +251,45 @@
       .choose-grid { grid-template-columns: 1fr; }
       .closing { padding: 56px 24px; }
     }
+
+    /* ── PARTNER BAND ── */
+    .partner-band { background: #fff8f6; border-bottom: 1px solid var(--border); padding: 28px 40px; }
+    .partner-band .inner { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .partner-band h3 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .partner-band p { font-size: 14px; color: var(--mid); line-height: 1.5; }
+
+    /* ── STAGES ── */
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stage { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: var(--white); }
+    .stage .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .stage h3 { font-size: 17px; font-weight: 800; margin: 6px 0 4px; }
+    .stage .size { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+    .stage p { font-size: 14px; color: var(--mid); line-height: 1.5; }
+    .stage.s3 { border-top: 4px solid var(--orange); }
+    .stage.s1 { border-top: 4px solid #aaa; }
+    .stage.s2 { border-top: 4px solid #d9b3a8; }
+
+    /* ── OUTCOMES ── */
+    .outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .outcome { border-left: 3px solid var(--orange); padding: 4px 0 4px 16px; }
+    .outcome .who { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .outcome h3 { font-size: 15px; font-weight: 800; margin: 4px 0; }
+    .outcome p { font-size: 14px; color: var(--mid); line-height: 1.5; }
+    .fineprint { font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
+
+    /* ── NEXT STEPS ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: st; }
+    .step { border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; background: var(--white); }
+    .step::before { counter-increment: st; content: counter(st); display: inline-block; font-weight: 800; color: var(--orange); font-size: 22px; margin-bottom: 4px; }
+    .step h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .step p { font-size: 14px; color: var(--mid); line-height: 1.5; }
+
+    .sources { max-width: 1040px; margin: 0 auto; padding: 32px 40px 48px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .sources a { color: var(--mid); }
+    @media (max-width: 700px) {
+      .stages, .steps { grid-template-columns: 1fr; }
+      .partner-band, .sources { padding-left: 20px; padding-right: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -257,34 +297,43 @@
 <!-- ── NAV ── -->
 <nav>
   <a href="#" class="nav-logo">dbt<span>Labs</span></a>
-  <a href="#choose" class="nav-cta">See if it's right for you →</a>
+  <a href="#choose" class="nav-cta">Find your fit &rarr;</a>
 </nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <span class="hero-eyebrow">dbt platform (Enterprise) vs. Snowflake dbt Projects</span>
-  <h1>Build pipelines faster. <em>Ship data products sooner.</em></h1>
-  <p>dbt platform gives teams the managed infrastructure, governed collaboration, and tooling to build data pipelines quickly and ship reliable data products faster. Snowflake dbt Projects is a solid starting point for small, Snowflake-only teams that already know dbt well — but it's a place to author and run dbt, not a managed platform. CI/CD, retry, alerting, observability, version upgrades, and cross-project governance are things your engineers build and keep running.</p>
+  <span class="hero-eyebrow">dbt platform and Snowflake dbt Projects, side by side</span>
+  <h1>Start fast on Snowflake. <em>Scale with the dbt platform.</em></h1>
+  <p>dbt Projects on Snowflake is a convenient way to author and run dbt inside Snowflake, and it works well for a single team getting started. As more teams, models, and use cases arrive, most organizations need managed CI/CD, governed collaboration across projects, and a context layer for AI. That is what the dbt platform adds, on top of Snowflake.</p>
   <div class="hero-actions">
-    <a href="#compare" class="btn-primary">See the comparison</a>
-    <a href="#choose" class="btn-ghost">Find your fit</a>
+    <a href="#stages" class="btn-primary">Where each fits</a>
+    <a href="#compare" class="btn-ghost">See the comparison</a>
     <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown</a>
   </div>
 </section>
 
+<!-- ── BETTER TOGETHER ── -->
+<div class="partner-band">
+  <div class="inner">
+    <div><h3>Better together</h3><p>Snowflake is a long-standing dbt Labs partner, with partner awards three years in a row. This is not one or the other: the dbt platform runs your dbt on Snowflake.</p></div>
+    <div><h3>Buy through Snowflake</h3><p>The dbt platform is available on Snowflake Marketplace, so you can procure it through your Snowflake account.</p></div>
+    <div><h3>Same dbt, either way</h3><p>Both run standard dbt projects. A project started on Snowflake dbt Projects moves to the dbt platform with configuration changes, not a rewrite.</p></div>
+  </div>
+</div>
+
 <!-- ── STATS STRIP ── -->
 <div class="stats-strip">
   <div class="stat">
-    <span class="stat-num">15–30%</span>
+    <span class="stat-num">15&ndash;30%</span>
     <span class="stat-label">average compute savings<br>with dbt State*</span>
   </div>
   <div class="stat">
-    <span class="stat-num">2–6 mo</span>
-    <span class="stat-label">of senior engineering time to build<br>your own CI/CD on Snowflake dbt Projects†</span>
+    <span class="stat-num">dbt Mesh</span>
+    <span class="stat-label">contracts and access control<br>across projects and platforms</span>
   </div>
   <div class="stat">
-    <span class="stat-num">Multi-team</span>
-    <span class="stat-label">cross-project Mesh<br>not available in Snowflake dbt Projects</span>
+    <span class="stat-num">Built in</span>
+    <span class="stat-label">Slim CI, compare changes,<br>environments, and alerting</span>
   </div>
   <div class="stat">
     <span class="stat-num">Direct</span>
@@ -292,65 +341,93 @@
   </div>
 </div>
 
-<!-- ── WHY IT MATTERS ── -->
-<div style="background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<!-- ── STAGES ── -->
+<div id="stages" style="background: var(--bg); border-bottom: 1px solid var(--border);">
 <div class="section">
   <div class="section-header">
-    <div class="section-eyebrow">Why it matters</div>
-    <h2 class="section-title">The platform that makes AI, analytics,<br>and self-service reliable at scale</h2>
-    <p class="section-sub">Snowflake dbt Projects runs the compute. dbt platform (Enterprise) runs the platform — the trust, governance, and context layer your data stack needs as complexity grows.</p>
+    <div class="section-eyebrow">The scaling inflection point</div>
+    <h2 class="section-title">Where each option fits</h2>
+    <p class="section-sub">The question is not which tool is better in the abstract. It is how many teams depend on each other, and how much platform tooling you want to own.</p>
   </div>
-  <div class="impact-grid">
-    <div class="impact-card">
-      <span class="ic-icon">🧰</span>
-      <h3>Free to run ≠ free to operate</h3>
-      <p>Snowflake dbt Projects has no license fee, but someone on your team builds and maintains the CI/CD pipeline, failure recovery, alerting, job history, and dbt version upgrades — and that assumes existing dbt expertise to begin with. dbt platform replaces that build cost rather than adding to it, and ships with onboarding from the team that builds dbt.</p>
+  <div class="stages">
+    <div class="stage s1">
+      <div class="k">Starting</div>
+      <h3>Snowflake dbt Projects works well</h3>
+      <div class="size">1 to 3 builders &middot; 10 to 50 models</div>
+      <p>One team, one project, Snowflake only. Authoring, running, and scheduling dbt inside Snowsight keeps things simple.</p>
     </div>
-    <div class="impact-card">
-      <span class="ic-icon">🏗️</span>
-      <h3>Multi-team collaboration</h3>
-      <p>dbt Mesh enables cross-project references, contracts, and access controls — so teams build on trusted upstream assets instead of recreating logic.</p>
+    <div class="stage s2">
+      <div class="k">Growing complexity</div>
+      <h3>More jobs, more dependencies</h3>
+      <div class="size">4 to 10 contributors &middot; 50 to 200 models</div>
+      <p>CI pipelines, environment separation, failure handling, and alerting start to need someone who owns them. Worth assessing the build-or-buy trade-off here.</p>
     </div>
-    <div class="impact-card">
-      <span class="ic-icon">⚡</span>
-      <h3>Development efficiency</h3>
-      <p>The dbt v2 engine gives developers live diagnostics and column autocomplete in Studio and VS Code. Snowflake Workspaces runs v2 as an execution runtime only — no language server, so errors surface after the run finishes, not as you type.</p>
-    </div>
-    <div class="impact-card">
-      <span class="ic-icon">📐</span>
-      <h3>Trusted metrics — fully portable</h3>
-      <p>Semantic Layer powered by MetricFlow centralizes metric definitions across all teams and all warehouses, versioned and tested alongside your models. Because MetricFlow is warehouse-agnostic, your metric definitions move with you — every dashboard, report, and AI agent (via MCP) uses the same definition of revenue regardless of which data platform you're on. Snowflake Semantic Views are Snowflake-only and managed as database objects outside your project's version control and CI.</p>
-    </div>
-    <div class="impact-card">
-      <span class="ic-icon">🔍</span>
-      <h3>Lineage &amp; impact analysis</h3>
-      <p>Column-level, filterable lineage across projects — plus impact analysis in the editor — lets you understand downstream impact before making changes. Snowflake's Horizon lineage only covers materialized objects after a first run, caps the DAG view at 300 models, and stops at the project boundary.</p>
-    </div>
-    <div class="impact-card">
-      <span class="ic-icon">🔒</span>
-      <h3>Governance controls</h3>
-      <p>Model-level access modifiers (public/protected/private), environment separation, PR-based approvals, and audit history meet production standards and compliance requirements. In Snowflake dbt Projects, governance is all-or-nothing at the project-object level, and a developer with prod grants can build straight to prod from a workspace.</p>
-    </div>
-    <div class="impact-card">
-      <span class="ic-icon">💰</span>
-      <h3>Cost efficiency</h3>
-      <p>dbt State skips unchanged models on every run, and Cost Insights proves what it saved — per model and per job. On Snowflake, every run also holds a user-managed warehouse through parse and compile (no serverless tasks for dbt), and there's no view to show finance what State actually saved.</p>
-    </div>
-    <div class="impact-card">
-      <span class="ic-icon">🎨</span>
-      <h3>Accessible to non-technical builders</h3>
-      <p>dbt Canvas gives analysts and BI developers a drag-and-drop visual interface to build in dbt natively — no SQL required — and every Canvas model compiles to version-controlled dbt SQL. Snowflake dbt Projects requires engineering experience to use; there is no equivalent visual development layer available in the tool.</p>
+    <div class="stage s3">
+      <div class="k">Scaling</div>
+      <h3>The dbt platform earns its keep</h3>
+      <div class="size">10+ teams &middot; 200+ models, shared and reused</div>
+      <p>Teams depend on each other's models. Contracts, ownership, governed CI, cost control, and trusted context for AI become the priority.</p>
     </div>
   </div>
 </div>
 </div>
 
+<!-- ── WHY IT MATTERS ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">How the dbt platform differentiates</div>
+    <h2 class="section-title">Scale, governance, AI-ready context, and openness</h2>
+    <p class="section-sub">Snowflake runs the compute in both cases. The dbt platform adds the trust, governance, and context layer around it.</p>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <h3>Scale: dbt Mesh across projects</h3>
+      <p>Cross-project <code>ref()</code> to public, contracted models with public, protected, and private access, and no code copied between repos. Snowflake dbt Projects supports two-argument refs against imported private Git packages (with a cross-project DAG view since October 2026), but without cross-project contract enforcement or access modifiers.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Scale: multi-platform</h3>
+      <p>The same dbt project patterns run on Snowflake, Databricks, BigQuery, Redshift, Fabric, and more, and dbt Mesh can span platforms. Snowflake dbt Projects runs on Snowflake, which is exactly right for Snowflake-only estates.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Governance: CI/CD without scripting</h3>
+      <p>Slim CI, a temporary schema per pull request, status posted back to the PR, compare changes (data diffs), and SQL linting, configured in the UI. On Snowflake, Slim CI and defer are GA and run through a pipeline you build in GitHub Actions, GitLab CI/CD, or Azure DevOps.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Governance: enforced environments</h3>
+      <p>Dev, staging, and production are modeled environments; the development IDE cannot build to production regardless of warehouse grants. In Snowflake dbt Projects, Git is optional and separation relies on Snowflake RBAC; Snowflake's own best practices recommend deploying to production only through CI/CD.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Governance: contracts, versions, ownership</h3>
+      <p>Column-level contracts and model versions enforced across projects, model owners routed failure alerts directly by Slack, Teams, or email, and an interactive dbt Catalog with column-level lineage across projects.</p>
+    </div>
+    <div class="impact-card">
+      <h3>AI-ready context</h3>
+      <p>The dbt MCP server gives agents live production lineage, source freshness, test health, and job history, plus governed metrics from the warehouse-agnostic Semantic Layer. Snowflake Semantic Views and Cortex are strong Snowflake-native options; MetricFlow definitions travel with your project across platforms.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Cost: dbt State, with proof</h3>
+      <p>dbt State skips or clones models whose code and upstream data have not changed, and Cost Insights (Beta) shows the savings per model and job. dbt State is also available to Snowflake dbt Projects through an integration that requires a dbt platform account.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Open APIs and integrations</h3>
+      <p>Discovery, Admin, and Semantic Layer APIs, Terraform, and 30+ integrations let you push dbt lineage and metadata into enterprise governance and BI tools. dbt lineage and documentation also remain visible in Snowflake Horizon.</p>
+    </div>
+    <div class="impact-card">
+      <h3>Expert help: Resident Architects</h3>
+      <p>Embedded dbt Labs architects help with testing strategy, CI/CD, dbt Mesh design, cost optimization, and code standards, alongside direct support from the team that builds dbt. Canvas lets analysts contribute visually, and every Canvas model compiles to version-controlled dbt SQL.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
 <!-- ── COMPARISON TABLE ── -->
 <div id="compare">
 <div class="section">
   <div class="section-header">
-    <div class="section-eyebrow">Head-to-head comparison</div>
-    <h2 class="section-title">How they differ across every dimension</h2>
+    <div class="section-eyebrow">Side by side</div>
+    <h2 class="section-title">How they differ, dimension by dimension</h2>
+    <p class="section-sub">Snowflake details come from Snowflake's documentation, reviewed 2026-11-20. Links are listed at the bottom of the page.</p>
   </div>
   <div class="table-wrap">
     <table class="comp">
@@ -364,82 +441,70 @@
       </thead>
       <tbody>
         <tr>
-          <td>Platform maintenance</td>
-          <td class="dbt-cell">Fully managed — scheduler, CI/CD, environments, alerting, job history, and dbt version upgrades maintained for you</td>
-          <td><span class="snow-limit">Snowflake runs the compute; CI/CD, observability, governance tooling, and dbt-specific upgrades are the customer's to build and keep running (typically 2–6 months of senior engineering time to build)</span></td>
-          <td class="why-cell">"Free" is a starting point, not a platform. Engineering time spent on tooling is time not spent on data products.</td>
-        </tr>
-        <tr>
-          <td>dbt experience required</td>
-          <td class="dbt-cell">Analysts can build in Canvas without SQL; engineers get live diagnostics in Studio; onboarding and training from dbt Labs</td>
-          <td><span class="snow-limit">Assumes an experienced dbt team — Workspaces is a general file editor with no dbt language server, and setup, packages, and monitoring need ACCOUNTADMIN configuration</span></td>
-          <td class="why-cell">Works well for teams that already know dbt; harder to onboard new builders or non-engineers.</td>
+          <td>Platform operations</td>
+          <td class="dbt-cell">Managed scheduler, CI/CD, environments, alerting, job history, and dbt version upgrades</td>
+          <td>Snowflake runs the project and the runtime; CI pipelines, environment conventions, and alerting are configured by your team</td>
+          <td class="why-cell">No license fee is not the same as no operating cost. Weigh the engineering time to build and run the tooling.</td>
         </tr>
         <tr>
           <td>Multi-team collaboration</td>
-          <td class="dbt-cell">dbt Mesh: cross-project and cross-platform references, contracts, and access modifiers</td>
-          <td><span class="snow-limit">No cross-project ref — another team's project is copied in as a local package and the copies drift</span></td>
-          <td class="why-cell">Teams build on trusted upstream assets instead of recreating logic. Dependencies between projects, not team size, are the qualifier.</td>
+          <td class="dbt-cell">dbt Mesh: cross-project and cross-platform refs, contracts, versions, and access modifiers</td>
+          <td>Two-argument ref() against imported private Git packages, with a cross-project DAG view; no cross-project contracts or access modifiers</td>
+          <td class="why-cell">Dependencies between teams, not team size, are the qualifier.</td>
         </tr>
         <tr>
-          <td>Development efficiency</td>
-          <td class="dbt-cell">dbt v2 engine with live diagnostics, column autocomplete, and impact analysis in Studio and VS Code; dbt Wizard inline</td>
-          <td><span class="snow-limit">v2 runs as a pinned preview runtime only; Workspaces has no language server (no live diagnostics or autocomplete) and no streaming output</span></td>
-          <td class="why-cell">Errors are caught as you type, before they hit the warehouse — not after the run finishes.</td>
+          <td>Developer experience</td>
+          <td class="dbt-cell">dbt Core v2 with live diagnostics, column autocomplete, and impact analysis in Studio and VS Code; Canvas for analysts; dbt Wizard</td>
+          <td>Snowsight Workspaces with compiled SQL and DAG views; dbt 2.0.0 and Core 1.9 to 1.12 available as runtimes</td>
+          <td class="why-cell">Catching errors as you type keeps mistakes out of the warehouse and widens who can contribute.</td>
         </tr>
         <tr>
-          <td>CI/CD workflows</td>
-          <td class="dbt-cell">PR-triggered CI with a temp schema per PR, status posted back to the PR, Slim CI, Advanced CI (compare changes), and SQL linting — configured from the UI</td>
-          <td>Hand-built in GitHub Actions via Snowflake CLI; Slim CI needs MONITOR on prod and a prod run in the last 7 days; no compare changes</td>
-          <td class="why-cell">CI is native rather than a pipeline someone on your team owns, maintains, and debugs when the 7-day window lapses.</td>
+          <td>CI/CD</td>
+          <td class="dbt-cell">PR-triggered Slim CI with a temporary schema per PR, status on the PR, compare changes, and linting, configured in the UI</td>
+          <td>Slim CI and defer to production GA (Sep 2026) through a pipeline you configure; needs MONITOR on prod and a prod run within 14 days; no compare changes</td>
+          <td class="why-cell">Native CI means nobody on your team owns the pipeline code.</td>
         </tr>
         <tr>
-          <td>Accessibility</td>
-          <td class="dbt-cell">dbt Canvas: drag-and-drop visual editor for analysts and BI developers — no engineering experience required</td>
-          <td><span class="snow-limit">Requires engineering experience to use — no visual development layer available</span></td>
-          <td class="why-cell">Expands who can build data products — analysts and non-engineers can contribute natively in dbt without writing SQL.</td>
+          <td>Environments and safety</td>
+          <td class="dbt-cell">Modeled dev, staging, and prod; the IDE writes to dev only; PR gates and audit history</td>
+          <td>profiles.yml targets and Snowflake RBAC; Git optional; Snowflake recommends production deploys through CI/CD only</td>
+          <td class="why-cell">Guardrails in software scale better than conventions.</td>
         </tr>
         <tr>
-          <td>Trusted metrics</td>
-          <td class="dbt-cell">Semantic Layer powered by MetricFlow — fully portable, warehouse-agnostic, version-controlled and tested alongside your dbt models; served to BI and AI agents via MCP</td>
-          <td>Snowflake Semantic Views — Snowflake data only, managed as database objects outside the project's version control and CI</td>
-          <td class="why-cell">Centralized metric definitions across all teams and all warehouses. Metric logic moves with you — not locked to a single platform.</td>
+          <td>Orchestration and recovery</td>
+          <td class="dbt-cell">Scheduled, event, and API-triggered jobs; automatic retry from the point of failure; alerts routed to model owners</td>
+          <td>Snowflake Tasks on a user-managed warehouse (serverless tasks not supported) or external orchestrators; task-level retry; Re-run, dbt retry, or result:error+ for recovery</td>
+          <td class="why-cell">Who gets paged, and how much work a 2 a.m. failure takes, matters at scale.</td>
         </tr>
         <tr>
-          <td>Lineage &amp; impact analysis</td>
-          <td class="dbt-cell">Column-level, filterable lineage across projects; impact analysis in the editor</td>
-          <td>Horizon column lineage on materialized objects only (after a first run); 300-model DAG cap; no cross-project lineage</td>
-          <td class="why-cell">Understand downstream impact before making changes.</td>
+          <td>Cost efficiency</td>
+          <td class="dbt-cell">dbt State built in, with Cost Insights (Beta) showing savings per model and job</td>
+          <td>dbt State via integration (requires a dbt platform account, billed by dbt Labs); no Cost Insights view</td>
+          <td class="why-cell">Both can skip unchanged models; the platform also shows what it saved.</td>
         </tr>
         <tr>
-          <td>Governance controls</td>
-          <td class="dbt-cell">Model-level access modifiers, environment separation (IDE writes to dev only), PR-based approvals, audit history</td>
-          <td><span class="snow-limit">RBAC at the project-object level only; no model-level access; prod safety depends on warehouse RBAC discipline</span></td>
-          <td class="why-cell">Meets production standards and compliance requirements.</td>
+          <td>Metrics</td>
+          <td class="dbt-cell">Semantic Layer (MetricFlow): versioned and tested with your models, warehouse-agnostic, served to BI and to agents via MCP</td>
+          <td>Snowflake Semantic Views: Snowflake-native objects, defined separately from MetricFlow</td>
+          <td class="why-cell">One definition of revenue for every dashboard and agent, wherever the data lives.</td>
         </tr>
         <tr>
-          <td>Git flexibility</td>
-          <td class="dbt-cell">GitHub, GitLab, Azure DevOps, and Bitbucket — PRs created and reviewed in-product</td>
-          <td>GitHub (GitLab and Azure DevOps CI in preview); PR creation and code review happen outside Snowflake</td>
-          <td class="why-cell">Continue using existing development workflows.</td>
+          <td>Lineage and catalog</td>
+          <td class="dbt-cell">dbt Catalog with column-level lineage across projects and impact analysis in the editor</td>
+          <td>Snowsight project DAG (up to 300 models at a time) and Horizon lineage on materialized objects</td>
+          <td class="why-cell">Know the blast radius before you merge.</td>
         </tr>
         <tr>
-          <td>Operational scale</td>
-          <td class="dbt-cell">Designed for large, concurrent workloads (100 run slots on Enterprise; unlimited on Enterprise+)</td>
-          <td><span class="snow-limit">100,000-file and 2 GB repo limits; concurrent runs need WRITEBACK = FALSE or distinct target paths; 300-model DAG view</span></td>
-          <td class="why-cell">Avoids bottlenecks as usage expands.</td>
+          <td>Git providers</td>
+          <td class="dbt-cell">GitHub, GitLab, Azure DevOps, Bitbucket; PRs created from the product</td>
+          <td>GitHub, GitLab, Azure DevOps documented; PRs opened and reviewed in the Git provider</td>
+          <td class="why-cell">Keep the workflows your engineers already use.</td>
         </tr>
         <tr>
-          <td>Orchestration &amp; cost efficiency</td>
-          <td class="dbt-cell">dbt State built in, with Cost Insights showing credits saved per model and job; automatic retry from the point of failure; model-level alerts</td>
-          <td><span class="snow-limit">Snowflake Tasks on a user-managed warehouse (no serverless) held through parse and compile; retry is manual; task-level alerts only; dbt State available only via a paid dbt Labs integration with no Cost Insights</span></td>
-          <td class="why-cell">Both can skip unchanged models with dbt State — only one proves what it saved and recovers from a 2 a.m. failure without a human.</td>
-        </tr>
-        <tr>
-          <td>Support model</td>
-          <td class="dbt-cell">Direct access to dbt Labs with SLAs; version upgrades managed for you</td>
-          <td>Snowflake supports the runtime and pins the dbt versions available; dbt-specific issues, packages, and upgrades are the customer's</td>
-          <td class="why-cell">Direct path to the team that builds and maintains dbt — one vendor, one incident.</td>
+          <td>Support</td>
+          <td class="dbt-cell">Direct access to dbt Labs with SLAs; Resident Architects available</td>
+          <td>Snowflake supports the runtime and the dbt versions it offers</td>
+          <td class="why-cell">A direct path to the team that builds dbt.</td>
         </tr>
       </tbody>
     </table>
@@ -447,47 +512,74 @@
 </div>
 </div>
 
-<hr class="divider" />
+<!-- ── OUTCOMES ── -->
+<div style="background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<div class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Customer outcomes</div>
+    <h2 class="section-title">Where teams moved to the dbt platform</h2>
+  </div>
+  <div class="outcomes">
+    <div class="outcome"><div class="who">Regulated regional bank</div><h3>24/7 enterprise support</h3><p>Weekend production jobs needed guaranteed round-the-clock SLA coverage, plus structured dbt training for a team new to dbt.</p></div>
+    <div class="outcome"><div class="who">Global fashion retailer</div><h3>dbt Mesh and a Resident Architect</h3><p>Needed multi-project collaboration without duplicating code, and an architect embedded close to the product team.</p></div>
+    <div class="outcome"><div class="who">National insurance distributor</div><h3>CI/CD without scripting</h3><p>Replaced custom CI/CD scripts and manual connection-token upkeep with native Git workflows.</p></div>
+    <div class="outcome"><div class="who">Major financial institution</div><h3>Open metadata APIs</h3><p>Used the Discovery and Admin APIs with Terraform to export lineage into its enterprise governance tooling.</p></div>
+  </div>
+  <p class="fineprint">dbt State design partners saw run cost savings of 8 to 38%, 15 to 30% on average.* Customer names withheld.</p>
+</div>
+</div>
 
 <!-- ── CHOOSE SECTION ── -->
 <div id="choose">
 <div class="section">
   <div class="section-header">
     <div class="section-eyebrow">Find your fit</div>
-    <h2 class="section-title">Which is right for your team?</h2>
-    <p class="section-sub">Both options serve real needs — it comes down to where you are on the maturity curve today, how much dbt expertise and engineering capacity you can commit to running it, and where you need to be in 12–18 months.</p>
+    <h2 class="section-title">Which is right for your team today?</h2>
+    <p class="section-sub">Both serve real needs. It comes down to how many teams share models, how much platform tooling you want to own, and where you need to be in 12 to 18 months.</p>
   </div>
   <div class="choose-grid">
 
     <div class="choose-card choose-dbt">
-      <h3>Choose dbt platform (Enterprise) when you need to:</h3>
-      <p class="choose-sub">The right fit for teams operating dbt as a production data capability.</p>
+      <h3>The dbt platform fits when you need to:</h3>
+      <p class="choose-sub">Operate dbt as a production capability across teams.</p>
       <ul class="choose-list">
-        <li>Keep engineers on data products instead of building and maintaining CI/CD, orchestration, and observability tooling</li>
-        <li>Onboard analysts and newer dbt users safely — Canvas, guided onboarding, and live diagnostics</li>
-        <li>Scale dbt across multiple teams and domains</li>
-        <li>Standardize and govern shared business logic</li>
-        <li>Improve deployment reliability and developer productivity</li>
-        <li>Reduce warehouse costs through more efficient execution</li>
+        <li>Keep engineers on data products rather than on CI/CD, orchestration, and observability tooling</li>
+        <li>Share governed models across several teams or domains (dbt Mesh)</li>
+        <li>Onboard analysts and newer dbt users safely with Canvas, live diagnostics, and guided onboarding</li>
+        <li>Prove and control warehouse spend with dbt State and Cost Insights</li>
+        <li>Give AI agents trusted, live context through the dbt MCP server and Semantic Layer</li>
         <li>Meet security, compliance, and audit requirements</li>
-        <li>Maintain flexibility as data strategies evolve</li>
-        <li>Enable automation and simplicity at scale</li>
+        <li>Keep the option to run on more than one data platform</li>
       </ul>
     </div>
 
     <div class="choose-card choose-snow">
-      <h3>Snowflake dbt Projects is a good fit when:</h3>
-      <p class="choose-sub">A solid starting point for small, Snowflake-only teams that already know dbt and can staff the maintenance themselves.</p>
+      <h3>Snowflake dbt Projects fits when:</h3>
+      <p class="choose-sub">A convenient, Snowflake-native way to run dbt for a focused team.</p>
       <ul class="choose-list">
-        <li>Your team has deep prior dbt experience — Snowflake dbt Projects assumes it, with no guided onboarding and no in-editor diagnostics to catch mistakes</li>
-        <li>You can dedicate engineering headcount to platform maintenance — building and owning CI/CD, retry, alerting, job history, and dbt upgrades yourself (typically 2–6 months of senior engineering time to build, plus ongoing upkeep)</li>
-        <li>You're fully committed to Snowflake with no multi-warehouse plans — and no M&amp;A on the horizon</li>
-        <li>You have a small, single-team project (fewer than 5 developers) with no cross-team model sharing</li>
-        <li>You're running straightforward transformations in test or dev — not yet production-ready, and without production SLAs that need automatic retry or model-level alerting</li>
-        <li>No analysts or non-engineers need to contribute — there's no visual development layer</li>
+        <li>One team owns one project, with little model sharing across teams</li>
+        <li>Your team already knows dbt well and is comfortable owning its CI pipeline</li>
+        <li>Your data estate is Snowflake-only for the foreseeable future</li>
+        <li>You want to author and run dbt entirely inside Snowsight</li>
+        <li>You are getting started and plan to revisit as more teams adopt dbt</li>
       </ul>
     </div>
 
+  </div>
+</div>
+</div>
+
+<!-- ── NEXT STEPS ── -->
+<div style="background: var(--bg); border-top: 1px solid var(--border);">
+<div class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Next steps</div>
+    <h2 class="section-title">How teams like yours get to value in 30 days</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><h3>Discovery and success criteria</h3><p>Map your teams, projects, and pain points, and agree what success looks like.</p></div>
+    <div class="step"><h3>Demo on your use case</h3><p>See CI, dbt Mesh, dbt State, and the MCP server on a project shaped like yours.</p></div>
+    <div class="step"><h3>Business case and rollout plan</h3><p>Quantify cost, quality, and time to value, and plan the move with a dbt Labs architect.</p></div>
   </div>
 </div>
 </div>
@@ -495,14 +587,31 @@
 <!-- ── CLOSING ── -->
 <section class="closing">
   <blockquote>
-    Snowflake dbt Projects is a solid place to start if you already know dbt and can staff the tooling. dbt platform is built for organizations that need to operate dbt as a <em>reliable, governed capability</em> across teams, domains, and data infrastructure — without dedicating engineers to run it.
+    Snowflake dbt Projects is a good place to start. The dbt platform is built for organizations that run dbt as a <em>reliable, governed capability</em> across teams, domains, and data platforms, on top of Snowflake.
   </blockquote>
   <div class="closing-actions">
     <a href="https://www.getdbt.com/pricing" target="_blank" class="btn-primary">View dbt platform pricing</a>
-    <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown →</a>
+    <a href="simple-comparison.html" class="btn-ghost">Full feature breakdown &rarr;</a>
   </div>
-  <p style="margin-top:28px;font-size:12px;color:#888;max-width:740px;margin-left:auto;margin-right:auto;line-height:1.5;">*15–30% compute savings on average based on dbt State design partner results; individual savings vary by project configuration and workload. †2–6 months is a field estimate of the senior engineering time to build custom CI/CD, observability, and recovery on dbt Core / Snowflake dbt Projects; validate against your own team. Snowflake dbt Projects limitations reflect Snowflake's documentation as of September 2026.</p>
 </section>
+
+<div class="sources">
+  <p>*Based on dbt State design partner results; individual savings vary by project configuration and workload.</p>
+  <p style="margin-top:8px"><strong>Snowflake sources (reviewed 2026-11-20):</strong>
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake" target="_blank">overview</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-limitations" target="_blank">limitations</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dbt-core-versions" target="_blank">dbt versions</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-slim-ci-defer-to-prod" target="_blank">Slim CI and defer</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-ci-cd" target="_blank">CI/CD</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-orchestration" target="_blank">orchestration</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dependencies" target="_blank">dependencies</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-best-practices" target="_blank">best practices</a> &middot;
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dbt-state-integration" target="_blank">dbt State integration</a> &middot;
+    <a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-20-dbt-projects-on-snowflake-updates" target="_blank">2026-10-20 release</a> &middot;
+    <a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-09-10-dbt-artifacts-slim-ci-defer-to-production-ga" target="_blank">2026-09-10 release</a>.
+  </p>
+  <p style="margin-top:8px">Last reviewed 2026-11-20. Features and pricing change; spot something out of date? Tell your dbt Labs account team.</p>
+</div>
 
 </body>
 </html>

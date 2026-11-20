@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dbt — How it compares</title>
+  <title>dbt platform and Snowflake dbt Projects, side by side</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -219,7 +219,7 @@
       }
       tr.feature-row td:nth-child(2)::before, tr.overview-row td:nth-child(2)::before { content: 'dbt platform'; color: var(--orange); }
       tr.feature-row td:nth-child(3)::before, tr.overview-row td:nth-child(3)::before { content: 'dbt Core'; }
-      tr.feature-row td:nth-child(4)::before, tr.overview-row td:nth-child(4)::before { content: 'Snowflake dbt projects'; color: var(--snow); }
+      tr.feature-row td:nth-child(4)::before, tr.overview-row td:nth-child(4)::before { content: 'Snowflake dbt Projects'; color: var(--snow); }
       td.check-cell br { display: none; }
       td.check-cell .tier-pill { margin-left: 6px; text-align: left; max-width: none; }
       .yes, .no { font-size: 14px; line-height: 1.3; }
@@ -232,8 +232,8 @@
 
 <div class="page-header">
   <div class="eyebrow">dbt Labs</div>
-  <h1>How dbt compares</h1>
-  <p>dbt is the open standard for data transformation. Here's how the managed dbt platform, open-source dbt Core, and Snowflake dbt projects differ — and what each one asks of your team. Snowflake dbt Projects is a solid starting point for experienced dbt teams on Snowflake; the blue pills show where your engineers build and maintain what the platform provides out of the box.</p>
+  <h1>dbt platform and Snowflake dbt Projects, side by side</h1>
+  <p>dbt is the open standard for data transformation, and Snowflake is a long-standing dbt partner. This page sets out how the managed dbt platform, open-source dbt Core, and dbt Projects on Snowflake differ, and what each one asks of your team. Snowflake details come from Snowflake's own documentation (reviewed November 2026); blue pills mark partial or conditional support. Many teams use more than one of these, so read it as a map of fit, not a scorecard.</p>
 </div>
 
 <nav class="jump-nav" id="jump-nav">
@@ -269,7 +269,7 @@
       </th>
       <th>
         <span class="tier-badge badge-snow">Snowflake</span>
-        <span class="tier-name">Snowflake dbt projects</span>
+        <span class="tier-name">Snowflake dbt Projects</span>
         <span class="tier-sub">Native in Snowsight (Workspaces + DBT PROJECT objects)</span>
         <span class="tier-price">Snowflake compute pricing</span>
       </th>
@@ -283,7 +283,7 @@
   </tr>
   <tr class="overview-row">
     <td>Deployment model</td>
-    <td>Fully managed cloud service — no infrastructure to maintain</td>
+    <td>Fully managed cloud service, no infrastructure to maintain</td>
     <td>Self-hosted; you manage schedulers, alerting, CI/CD, and environments</td>
     <td>Native to Snowflake; runs inside Snowflake Workspaces</td>
   </tr>
@@ -295,7 +295,7 @@
   </tr>
   <tr class="overview-row">
     <td>Seats</td>
-    <td>Up to 5 developer seats (Starter) · Custom (Enterprise/Enterprise+) — <a href="https://www.getdbt.com/pricing" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">see pricing page</a></td>
+    <td>Up to 5 developer seats (Starter) · Custom (Enterprise/Enterprise+), <a href="https://www.getdbt.com/pricing" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">see pricing page</a></td>
     <td>Unlimited (self-managed)</td>
     <td>Snowflake users (no separate seat cost)</td>
   </tr>
@@ -303,7 +303,7 @@
     <td>Projects</td>
     <td>1 (Starter) · Up to 30 (Enterprise) · Unlimited (Enterprise+)</td>
     <td>Unlimited (local)</td>
-    <td>Multiple (schema-level DBT PROJECT objects), but no cross-project refs; 100,000-file and 2 GB repo limits</td>
+    <td>Multiple (schema-level DBT PROJECT objects); cross-project refs via imported packages; 100,000 files per project (Snowflake Git repos up to 2 GB)</td>
   </tr>
   <tr class="overview-row">
     <td>Models / month</td>
@@ -313,7 +313,7 @@
   </tr>
   <tr class="overview-row">
     <td>Run concurrency</td>
-    <td>2 run slots (Starter) · 100 (Enterprise) · Unlimited (Enterprise+)</td>
+    <td>Scales by plan; see the pricing page</td>
     <td>Unlimited (self-managed)</td>
     <td>Concurrent runs on one project object need WRITEBACK = FALSE or distinct target/log paths</td>
   </tr>
@@ -335,7 +335,7 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake CLI (snow dbt) only; no dbt debug; some flags unsupported</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake CLI (snow dbt) and SQL; a subset of dbt commands and flags is supported</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -343,8 +343,8 @@
       <span class="sub">Build, test, and run dbt models in your browser with autocomplete, previews, and real-time feedback.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Workspaces: shared workspaces, Git branching &amp; conflict resolution; no language server, no streaming output; PR creation &amp; review outside Snowflake</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowsight Workspaces: shared workspaces, Git branching and conflict resolution, compiled SQL and DAG views; no dbt language server documented; PR review happens in the Git provider</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -353,34 +353,25 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">≤15 users</span></td>
+    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Free</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/dbt-versions/release-notes" target="_blank" class="feature-link">dbt v2</a>
-      <span class="sub">The unified Rust-based engine (formerly the Fusion engine; GA September 2026) delivering real-time error detection, faster builds, and sub-second feedback — powering dbt State, the VS Code extension, and the Catalog. dbt Core continues as v1.x under Apache 2.0.</span>
+      <span class="sub">The Rust-based engine (dbt Core v2, formerly the Fusion engine; GA September 2026) delivering real-time error detection, faster builds, and sub-second feedback, powering dbt State, the VS Code extension, and the Catalog. dbt Core continues as v1.x under Apache 2.0.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Pinned 2.0.0-preview builds as execution runtime only; Snowflake chooses which versions are available; no language-server features in Workspaces</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">dbt 2.0.0 and Core 1.9 to 1.12 available as runtimes; Snowflake chooses which versions are offered</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/cloud/about-cloud/dbt-cloud-features" target="_blank" class="feature-link">dbt Canvas</a>
       <span class="sub">Drag-and-drop visual interface for building and visualizing dbt models without writing code. Every model compiles to version-controlled dbt SQL.</span>
     </td>
-    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-  </tr>
-
-  <tr class="feature-row">
-    <td class="feature-label"><a href="https://docs.getdbt.com/docs/cloud/use-dbt-copilot" target="_blank" class="feature-link">dbt Copilot</a>
-      <span class="sub">AI assistant that generates SQL, documentation, tests, and semantic models from natural language prompts. Remains available in Canvas and Insights; dbt Wizard is the next-generation agent (see AI &amp; agents).</span>
-    </td>
-    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Starter: 100 · Enterprise: 5,000 · Enterprise+: 10,000 actions/mo</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Cortex Code panel (not grounded in the dbt project)</span></td>
+    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span> <span class="tier-pill pill-beta">Beta</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -389,7 +380,7 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Via env.yml; private Git tokens require Snowflake secrets (ACCOUNTADMIN setup)</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Via env.yml, including SQL-computed values and Snowflake secrets</span></td>
   </tr>
 
   <!-- ═══ ORCHESTRATION ═══ -->
@@ -402,8 +393,8 @@
       <span class="sub">Separate dev, staging, and production environments so code changes can be tested safely before going live. The IDE can only write to dev.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">profiles.yml targets + env.yml; per-PR databases scripted; a developer with prod grants can build to prod from a workspace</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">profiles.yml targets and env.yml; separation relies on Snowflake RBAC, and Snowflake recommends deploying to production through CI/CD rather than from a workspace</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -411,26 +402,26 @@
       <span class="sub">Run dbt projects on a recurring schedule triggered by time, day of week, or external events.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Via Snowflake Tasks on a user-managed warehouse (no serverless); manual SQL required</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake Tasks on a user-managed warehouse (serverless tasks not supported), or an external orchestrator such as Airflow</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/dbt-state-about" target="_blank" class="feature-link">dbt State</a>
-      <span class="sub">Formerly state-aware orchestration. Skips, clones, or defers models whose code or upstream data haven't changed — in production, CI, and development. 15–30% average compute savings based on design partner results.* Consumption-based add-on ($0.094 per daily active target table) available to all plans.</span>
+      <span class="sub">Formerly state-aware orchestration. Skips, clones, or defers models whose code or upstream data haven't changed, in production, CI, and development. 15–30% average compute savings based on design partner results.* Consumption-based add-on; see the pricing page.</span>
     </td>
-    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Add-on, all plans · Cost Insights on Enterprise</span></td>
+    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Add-on · Cost Insights (Beta) on Enterprise</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Add-on via plug-in (dbt v1.7+ and v2)</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Via dbt State integration (paid dbt Labs product; Snowflake docs pending); no Cost Insights to prove savings</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Via the dbt State integration (since Oct 2026): requires a dbt platform account, billed by dbt Labs; no Cost Insights view</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/deploy-jobs" target="_blank" class="feature-link">Native retry logic &amp; alerting</a>
-      <span class="sub">Automatic retry from the point of failure; model-level alerts; native email, Slack, and Microsoft Teams notifications — no custom webhook setup required.</span>
+      <span class="sub">Automatic retry from the point of failure; model-level alerts; native email, Slack, and Microsoft Teams notifications, no custom webhook setup required.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Task-level notifications only; no automatic retry (manual dbt retry or result:error+ rerun)</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Task-level retry and notifications; failed runs recovered with Re-run from Query History, dbt retry, or result:error+</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -438,17 +429,17 @@
       <span class="sub">Trigger dbt job runs programmatically from external orchestration tools or data pipeline events.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">EXECUTE DBT PROJECT via SQL or Snowflake CLI; Snowsight triggered actions on PR open</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">EXECUTE DBT PROJECT via SQL or Snowflake CLI</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/run-visibility" target="_blank" class="feature-link">Job run history UI</a>
-      <span class="sub">Model-level pass/fail, run durations, and row counts — no SQL queries required.</span>
+      <span class="sub">Model-level pass/fail, run durations, and row counts, no SQL queries required.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Snowsight Transformation » dbt Projects view (per-model status, run DAG); logs need LOG_LEVEL/event-table setup; 7-day Information Schema retention (365 via Account Usage)</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowsight dbt Projects view (per-model status, run DAG, environment in run history); detailed logs need event-table setup</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -457,7 +448,7 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">CLI only</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Command supported (requires live-version project object); no freshness UI</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">source freshness supported (since Oct 2026); no dedicated freshness UI documented</span></td>
   </tr>
 
   <!-- ═══ CI/CD ═══ -->
@@ -471,34 +462,34 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">GitHub; GitLab &amp; Azure DevOps CI in preview. Branching &amp; conflict resolution in-tool; PR creation &amp; review outside Snowflake</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">GitHub, GitLab, Azure DevOps documented. Branching and conflict resolution in Workspaces; PRs opened and reviewed in the Git provider</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/continuous-integration" target="_blank" class="feature-link">Slim CI &amp; defer to production</a>
-      <span class="sub">Runs only modified models and tests on a pull request — no full-DAG rebuild on every PR. Triggered automatically per PR with status posted back.</span>
+      <span class="sub">Runs only modified models and tests on a pull request, no full-DAG rebuild on every PR. Triggered automatically per PR with status posted back.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Manual<br>(--state flag)</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Hand-built in GitHub Actions: --defer --state via SYSTEM$DBT_GET_LAST_SUCCESSFUL_RUN_TARGET; requires MONITOR on prod and a prod run in the last 7 days</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Supported (GA Sep 2026) through a CI pipeline you configure (GitHub Actions, GitLab CI/CD, Azure DevOps); needs MONITOR on prod and a prod run within 14 days</span></td>
   </tr>
 
   <tr class="feature-row">
-    <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/advanced-ci" target="_blank" class="feature-link">Advanced CI — compare changes</a>
+    <td class="feature-label"><a href="https://docs.getdbt.com/docs/deploy/advanced-ci" target="_blank" class="feature-link">Advanced CI, compare changes</a>
       <span class="sub">Row, column, and primary-key diffs in run details and as a PR comment, so reviewers see what the data did before merging.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label">dbt lint
-      <span class="sub">SQLFluff-compatible SQL linter built into the platform — approximately 50× faster than standalone SQLFluff. Catches style and quality issues before code reaches production.</span>
+      <span class="sub">SQLFluff-compatible SQL linter built into the platform, approximately 50× faster than standalone SQLFluff. Catches style and quality issues before code reaches production.</span>
     </td>
     <td class="check-cell"><span class="tier-pill pill-beta">Beta</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -506,8 +497,8 @@
       <span class="sub">Each open pull request builds in its own isolated schema, created and dropped automatically on merge or close.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Scripted: pipeline creates and drops a database per PR</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Configured in your CI pipeline</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -516,7 +507,7 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Requires a network rule, external access integration (ACCOUNTADMIN), and Snowflake secrets for tokens</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Supported; needs a network rule, external access integration, and Snowflake secrets</span></td>
   </tr>
 
   <!-- ═══ CATALOG & DOCS ═══ -->
@@ -530,16 +521,16 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Local generation only</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">docs generate supported; viewable on the project object page in Snowsight; no docs serve</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">docs generate supported; docs shown on the project page in Snowsight; docs serve not supported</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/collaborate/explore-projects" target="_blank" class="feature-link">dbt Catalog</a>
-      <span class="sub">Explore lineage, model health, and latest production state — advanced tier adds Lineage Lenses, Health Tiles, column-level lineage, query history, and model performance.</span>
+      <span class="sub">Explore lineage, model health, and latest production state, advanced tier adds Lineage Lenses, Health Tiles, column-level lineage, query history, and model performance.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter" style="margin-bottom:2px">Basic: Starter</span><br><span class="tier-pill pill-ent">Advanced: Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Horizon Catalog (not dbt-native); project-scoped DAG, 300-model cap</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake Horizon Catalog; Snowsight DAG shows up to 300 models at a time</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -547,8 +538,8 @@
       <span class="sub">Trace exactly how data flows through individual columns across your entire pipeline, including across projects.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Horizon lineage on materialized objects only; unavailable until first run; gaps for intermediate views</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Horizon lineage on materialized objects (after a run)</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -556,17 +547,17 @@
       <span class="sub">Surfaces estimated compute costs and realized savings from dbt State across projects, models, and jobs. Supports Snowflake, BigQuery, and Databricks.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label">dbt Charts
-      <span class="sub">Transform YAML metric definitions into charts and dashboards natively in the dbt platform — no separate BI tool required for governed metric visualization.</span>
+      <span class="sub">Transform YAML metric definitions into charts and dashboards natively in the dbt platform, no separate BI tool required for governed metric visualization.</span>
     </td>
     <td class="check-cell"><span class="tier-pill pill-beta">Public Beta</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <!-- ═══ SEMANTIC LAYER ═══ -->
@@ -576,20 +567,20 @@
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl" target="_blank" class="feature-link">MetricFlow metric definitions</a>
-      <span class="sub">Centrally define business metrics alongside dbt models — portable, warehouse-agnostic, version-controlled.</span>
+      <span class="sub">Centrally define business metrics alongside dbt models, portable, warehouse-agnostic, version-controlled.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Definitions only</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake Semantic Views instead — Snowflake-only, managed as DB objects outside the project</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake Semantic Views: Snowflake-native objects, defined outside MetricFlow</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl" target="_blank" class="feature-link">Hosted Semantic Layer</a>
-      <span class="sub">Query governed metrics from BI tools like Tableau, Looker, Hex, and Mode — and from AI agents via the dbt MCP server. Enterprise adds caching and multiple credentials for fine-grained access.</span>
+      <span class="sub">Query governed metrics from BI tools like Tableau, Looker, Hex, and Mode, and from AI agents via the dbt MCP server. Enterprise adds caching and multiple credentials for fine-grained access.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Starter: 5k queried metrics/mo</span><br><span class="tier-pill pill-ent" style="margin-top:2px">Enterprise &amp; Enterprise+: 20k queried metrics/mo</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <!-- ═══ GOVERNANCE ═══ -->
@@ -603,43 +594,43 @@
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Within a single project only; no cross-project enforcement or access modifiers</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Supported; no cross-project enforcement or access modifiers (no dbt Mesh)</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label">Deployment approvals &amp; audit trail
-      <span class="sub">Every production deployment is logged with full attribution — who deployed what and when.</span>
+      <span class="sub">Every production deployment is logged with full attribution, who deployed what and when.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/mesh/about-mesh" target="_blank" class="feature-link">dbt Mesh</a>
-      <span class="sub">Reference models across separate dbt projects and across different data platforms — enabling governed data sharing at scale. Public/protected/private access modifiers.</span>
+      <span class="sub">Reference models across separate dbt projects and across different data platforms, enabling governed data sharing at scale. Public/protected/private access modifiers.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">No cross-project ref; other projects copied in as local packages</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Two-argument ref() against imported private Git packages, with cross-project DAG view (Oct 2026); no contracts or access control across projects</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/collaborate/govern/model-access" target="_blank" class="feature-link">Model-level access control (RBAC)</a>
-      <span class="sub">Control which users can view or modify specific models — beyond warehouse-level schema permissions.</span>
+      <span class="sub">Control which users can view or modify specific models, beyond warehouse-level schema permissions.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake RBAC on the project object only (all-or-nothing)</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake RBAC on the project object and on the objects it builds</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/cloud/manage-access/audit-log" target="_blank" class="feature-link">Audit logging</a>
       <span class="sub">Log all user and system actions for compliance, debugging, and security review.</span>
     </td>
-    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise: 3-month retention</span><br><span class="tier-pill pill-entplus" style="margin-top:2px">Enterprise+: unlimited</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <!-- ═══ AI & AGENTS ═══ -->
@@ -648,30 +639,21 @@
   </tr>
 
   <tr class="feature-row">
-    <td class="feature-label"><a href="https://docs.getdbt.com/docs/cloud/use-dbt-copilot" target="_blank" class="feature-link">dbt Copilot</a>
-      <span class="sub">AI code generation, documentation scaffolding, and test suggestions — basic on Starter, advanced (BYOK + natural language in Canvas and Insights) on Enterprise.</span>
-    </td>
-    <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-starter">Basic: Starter</span><br><span class="tier-pill pill-ent" style="margin-top:2px">Advanced + BYOK: Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-  </tr>
-
-  <tr class="feature-row">
     <td class="feature-label"><a href="https://docs.getdbt.com/docs/dbt-cloud-apis/overview" target="_blank" class="feature-link">dbt MCP server</a>
-      <span class="sub">Connect any AI agent (Claude, Cursor, GitHub Copilot) directly to dbt — reading lineage, querying governed metrics, writing models, triggering jobs with full governance context. GA September 2026.</span>
+      <span class="sub">Connect any AI agent (Claude, Cursor, GitHub Copilot) to dbt: lineage, model health, governed metrics, and job history, with full governance context. Local and remote (platform) servers.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Local MCP server (project metadata only; no Semantic Layer or job tools)</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label">dbt Wizard (formerly the Developer agent)
-      <span class="sub">Project-grounded analytics engineering agent: turns a plain-English request into a working dbt change — refactors models, generates SQL, tests, and docs, validates against your lineage, contracts, and tests before showing the diff. Explore Mode adds conversational analytics.</span>
+      <span class="sub">Project-grounded analytics engineering agent: turns a plain-English request into a working dbt change, refactors models, generates SQL, tests, and docs, validates against your lineage, contracts, and tests before showing the diff. Explore Mode adds conversational analytics.</span>
     </td>
     <td class="check-cell"><span class="tier-pill pill-beta">Public Preview in platform</span><br><span class="tier-pill pill-starter" style="margin-top:2px">Usage-based; Enterprise includes $100/mo, Enterprise+ $200/mo</span></td>
-    <td class="check-cell"><span class="tier-pill pill-beta">Wizard CLI: Public Beta · Desktop: Private Beta</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Cortex Code — reasons from what's synced to Snowflake, not the dbt project's contracts and tests</span></td>
+    <td class="check-cell"><span class="tier-pill pill-beta">Wizard CLI: Public Beta · Desktop: Beta</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake Cortex Code (separate product; compare on your own use case)</span></td>
   </tr>
 
   <!-- ═══ SECURITY ═══ -->
@@ -684,7 +666,7 @@
       <span class="sub">Multi-factor authentication and independently verified security controls.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
     <td class="check-cell"><span class="tier-pill pill-limited">Via Snowflake</span></td>
   </tr>
 
@@ -693,8 +675,8 @@
       <span class="sub">Authenticate via your identity provider; automate user provisioning and deprovisioning.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">SSO via Snowflake only; per-user Git PATs not centrally governed</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Via Snowflake SSO and SCIM</span></td>
   </tr>
 
   <tr class="feature-row">
@@ -702,8 +684,8 @@
       <span class="sub">Route traffic over a private network; restrict access to approved IP ranges.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-entplus">Enterprise+ only</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Workspace Git operations and package fetches go over the public internet via external access integrations</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake network policies and PrivateLink apply to Snowflake; Git and package access via external access integrations</span></td>
   </tr>
 
   <!-- ═══ SUPPORT ═══ -->
@@ -722,20 +704,20 @@
 
   <tr class="feature-row">
     <td class="feature-label">dbt Labs support
-      <span class="sub">Reach the team that builds dbt by email or in-product ticket. Starter: 24×5, no SLA. Enterprise: Basic support included (12×5, SLAs); Advanced (24×5) and Premier (24×7 for SEV1) available as add-ons.</span>
+      <span class="sub">Reach the team that builds dbt by email or in-product ticket. Starter: 24×5, no SLA. Enterprise: priority support with SLAs defined in your contract; higher support tiers available.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake supports the runtime; dbt-specific issues, packages, and version upgrades are the customer's</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="tier-pill pill-limited">Snowflake supports the runtime and the dbt versions it offers</span></td>
   </tr>
 
   <tr class="feature-row">
     <td class="feature-label">Priority SLAs &amp; dedicated account management
-      <span class="sub">Severity-based response-time SLAs (SEV1 from 2h on Basic, 1h on Advanced/Premier) and a named dbt Labs account team.</span>
+      <span class="sub">Severity-based response-time SLAs and a named dbt Labs account team.</span>
     </td>
     <td class="check-cell"><span class="yes">✓</span><br><span class="tier-pill pill-ent">Enterprise</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
-    <td class="check-cell"><span class="no">—</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
+    <td class="check-cell"><span class="no">–</span></td>
   </tr>
 
   </tbody>
@@ -750,28 +732,28 @@
 
     <div class="addon-card">
       <h3>dbt Wizard</h3>
-      <div class="addon-sub">Project-grounded AI agent for dbt — in the platform (Public Preview), CLI (Public Beta), and Desktop (Private Beta)</div>
-      <div class="addon-price">Usage-based: AI tokens billed at provider cost with no markup, or bring your own API key · 30-day trial</div>
+      <div class="addon-sub">Project-grounded AI agent for dbt: in the platform (Public Preview), CLI (Public Beta), and Desktop (Beta)</div>
+      <div class="addon-price">Usage-based: metered per token since September 2026, or bring your own API key · trial credits available</div>
       <ul class="addon-features">
         <li>Agentic, multi-step dbt development: reads your lineage, contracts, tests, and metric definitions before writing code, then validates its own work</li>
-        <li>Explore Mode — conversational analytics grounded in the dbt project, not just the warehouse</li>
-        <li>dbt-specific tool routing (knows when to compile vs. build, how to defer with dbt State) — unlike generic coding agents</li>
-        <li>Enterprise plans include $100/month of Wizard usage; Enterprise+ includes $200/month; draws from a shared Consumption Pool with dbt State</li>
-        <li>Powered by dbt v2 for real-time feedback and fast builds; works with self-hosted dbt via the CLI (no platform subscription required)</li>
+        <li>Explore Mode, conversational analytics grounded in the dbt project, not just the warehouse</li>
+        <li>dbt-specific tool routing (knows when to compile vs. build, how to defer with dbt State), unlike generic coding agents</li>
+        <li>Enterprise and Enterprise+ accounts include monthly usage credits</li>
+        <li>Powered by dbt Core v2 for real-time feedback and fast builds; works with self-hosted dbt via the CLI (no platform subscription required)</li>
       </ul>
       <div class="addon-avail">Available for: dbt Core users · dbt Starter · Enterprise · Enterprise+ · All data platforms</div>
     </div>
 
     <div class="addon-card">
       <h3>dbt State</h3>
-      <div class="addon-sub">Build only what changed — GA September 2026 (announced at dbt Summit)</div>
-      <div class="addon-price">$0.094 per daily active target table (list) · annual commits and ELAs get a lower rate · 30-day free trial</div>
+      <div class="addon-sub">Build only what changed: skip, clone, or defer unchanged models</div>
+      <div class="addon-price">Priced per daily active target table · see the pricing page · 30-day trial</div>
       <ul class="addon-features">
         <li>On every run, in production, CI, or development, skips, clones, or defers models whose code and upstream data haven't changed</li>
-        <li>Successor to state-aware orchestration: adds dev/CI reuse, cross-environment cloning, and runs on any dbt engine (v1.7+ or v2)</li>
-        <li>Works in the dbt platform, in your own orchestrator, or locally; same price per DATT everywhere</li>
-        <li>Priced on unique daily active target tables, not compute or table size — running jobs more often doesn't raise the cost</li>
-        <li>15–30% average compute savings based on design partner results; platform customers see savings per model and job in Cost Insights</li>
+        <li>Successor to state-aware orchestration: adds dev/CI reuse, cross-environment cloning, and runs on dbt v1 and v2</li>
+        <li>Works in the dbt platform, in your own orchestrator, locally, and with dbt Projects on Snowflake</li>
+        <li>Priced on unique daily active target tables, not compute or table size, running jobs more often doesn't raise the cost</li>
+        <li>15–30% average compute savings based on design partner results; platform customers see savings per model and job in Cost Insights (Beta)</li>
       </ul>
       <div class="addon-avail">Available à la carte for: dbt Core · dbt Starter · dbt Enterprise · dbt Enterprise+ (not legacy Team plans)</div>
     </div>
@@ -779,11 +761,25 @@
   </div>
 
   <p class="footnote" style="margin-top:24px">
-    <a href="index.html">View full tier comparison →</a> &nbsp;·&nbsp;
+    <a href="index.html">Back to the overview</a> &nbsp;·&nbsp;
     <a href="https://www.getdbt.com/pricing" target="_blank">getdbt.com/pricing</a> &nbsp;·&nbsp;
     <a href="https://docs.getdbt.com/docs/cloud/about-cloud/dbt-cloud-features" target="_blank">dbt platform features</a> &nbsp;·&nbsp;
-    Features and pricing subject to change. Snowflake dbt Projects details reflect Snowflake's documentation as of September 2026.
+    Features and pricing subject to change. Snowflake dbt Projects details reflect Snowflake's documentation as of November 2026 (last reviewed 2026-11-20).
     <br>*15–30% compute savings on average based on dbt State design partner results. Individual savings vary by project configuration and workload.
+    <br><br><strong>Snowflake sources (reviewed 2026-11-20):</strong>
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake" target="_blank">overview</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-limitations" target="_blank">limitations</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-supported-commands" target="_blank">supported commands</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dbt-core-versions" target="_blank">dbt versions</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-slim-ci-defer-to-prod" target="_blank">Slim CI and defer</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-ci-cd" target="_blank">CI/CD</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-orchestration" target="_blank">orchestration</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dependencies" target="_blank">dependencies</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-best-practices" target="_blank">best practices</a> ·
+    <a href="https://docs.snowflake.com/en/user-guide/data-engineering/dbt-projects-on-snowflake-dbt-state-integration" target="_blank">dbt State integration</a> ·
+    <a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-20-dbt-projects-on-snowflake-updates" target="_blank">2026-10-20 release</a> ·
+    <a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-09-10-dbt-artifacts-slim-ci-defer-to-production-ga" target="_blank">2026-09-10 release</a>.
+    Spot something out of date? Tell your dbt Labs account team.
     <br><br>
     <strong>Tier key:</strong>
     <span class="tier-pill pill-starter" style="font-size:10px">Starter</span> = available from Starter up &nbsp;
@@ -806,7 +802,7 @@
     });
   });
 
-  // Sticky tier header (JS-based — works inside overflow-x:auto)
+  // Sticky tier header (JS-based, works inside overflow-x:auto)
   (function() {
     const table   = document.getElementById('comparison-table');
     const tierRow = table && table.querySelector('thead tr.tier-row');
